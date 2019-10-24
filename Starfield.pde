@@ -19,14 +19,14 @@ class OddballParticle //inherits from Particle
 
 
 public float[] rotate(float x, float y, float z, float pitch, float roll, float yaw) {
-    float cosa = Math.cos(yaw);
-    float sina = Math.sin(yaw);
+    float cosa = (float)Math.cos(yaw);
+    float sina = (float)Math.sin(yaw);
 
-    float cosb = Math.cos(pitch);
-    float sinb = Math.sin(pitch);
+    float cosb = (float)Math.cos(pitch);
+    float sinb = (float)Math.sin(pitch);
 
-    float cosc = Math.cos(roll);
-    float sinc = Math.sin(roll);
+    float cosc = (float)Math.cos(roll);
+    float sinc = (float)Math.sin(roll);
 
     float Axx = cosa*cosb;
     float Axy = cosa*sinb*sinc - sina*cosc;
@@ -41,11 +41,12 @@ public float[] rotate(float x, float y, float z, float pitch, float roll, float 
     float Azz = cosb*cosc;
 
         float px = x;
-        var py = y;
-        var pz = z;
-
+        float py = y;
+        float pz = z;
+        	/*
         points[i].x = Axx*px + Axy*py + Axz*pz;
         points[i].y = Ayx*px + Ayy*py + Ayz*pz;
         points[i].z = Azx*px + Azy*py + Azz*pz;
-    }
+		*/
+	return(new float[]{Axx*px + Axy*py + Axz*pz, Ayx*px + Ayy*py + Ayz*pz, Azx*px + Azy*py + Azz*pz});
 }
