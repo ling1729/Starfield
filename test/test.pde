@@ -12,7 +12,7 @@ void setup()
 	//your code here
 	size(500, 500);
 	for(int i = 0; i < dots.length; i++)
-		dots[i] = new Particle(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), speed*(Math.random()-0.5), speed*(Math.random()-0.5), speed*(Math.random()-0.5));
+		dots[i] = new Particle(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
 
 }
 double a = 0;
@@ -36,18 +36,16 @@ class Particle
 	double angx = 0;
 	double angy = 0;
 	double angz = 0;
+	double speed = 0;
 	color c;
-	double vx;
-	double vy;
-	double vz;
-	Particle(double x, double y, double z, color c, double vx, double vy, double vz){
+	Particle(double x, double y, double z, color c, double ax, double ay, double speed){
 		this.x = x;
 		this.y = y;
 		this.z = z;
 		this.c = c;
-		this.vx = vx;
-		this.vy = vy;
-		this.vz = vz;
+		this.angx = ax;
+		this.angy = ay;
+		this.speed = speed;
 	}
 
 	void show(){
@@ -61,12 +59,9 @@ class Particle
 		newz = rotate3(x - ox, y - oy, z - oz, ax, ay, az)[2] + oz;
 	}
 	void expand(){
-		x += vx;
-		y += vy;
-		z += vz;
-		vx += vx > 0 ? -1 * slow : slow;
-		vy += vy > 0 ? -1 * slow : slow;
-		vz += vz > 0 ? -1 * slow : slow;
+		x += speed * Math.sin(angx) * Math.cos(angy);
+		y += speed * Math.sin(angx) * Math.sin(angy);
+		z += speed * Math.sin(angx);
 	}
 }
 
