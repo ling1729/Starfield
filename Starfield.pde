@@ -6,7 +6,7 @@ double speed = 5;
 double centerx = 250;
 double centery = 250;
 double centerz = 250;
-double slow = 0.001;
+double slow = 0.002;
 void setup()
 {
 	//your code here
@@ -15,17 +15,17 @@ void setup()
 		dots[i] = new Particle(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), speed*(Math.random()-0.5), speed*(Math.random()-0.5), speed*(Math.random()-0.5));
 
 }
+double a = 0;
 void draw()
 {
 	//your code here
 	background(0);
-	int a = 0;
 	for(int i = 0; i < dots.length; i++){
 		dots[i].show();
-		//a += 0.01;
-		//dots[i].rotate(a, a, a, 250, 250, 250);
+		a += 0.000001;
+		//dots[i].rotate(rot, rot, rot, centerx, centery, centerz);
 		dots[i].expand();
-		dots[i].rotate((mouseX-stmouseX)/100, (mouseY-stmouseY)/100, 0.01, centerx, centery, centerz);
+		dots[i].rotate((mouseX-stmouseX)/100+a, (mouseY-stmouseY)/100+a, 0.01+a, centerx, centery, centerz);
 	}
 }
 class Particle
