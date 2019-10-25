@@ -22,7 +22,7 @@ void draw()
 	background(0);
 	for(int i = 0; i < dots.length; i++){
 		dots[i].show();
-		a += 0.000001;
+		a += 0.0000005;
 		//dots[i].rotate(rot, rot, rot, centerx, centery, centerz);
 		dots[i].expand();
 		dots[i].rotate((mouseX-stmouseX)/100+a, (mouseY-stmouseY)/100+a, 0.01+a, centerx, centery, centerz);
