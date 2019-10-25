@@ -6,7 +6,7 @@ double speed = 5;
 double centerx = 250;
 double centery = 250;
 double centerz = 250;
-double slow = 0.002;
+double slow = 0.001;
 void setup()
 {
 	//your code here
