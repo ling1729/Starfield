@@ -59,9 +59,9 @@ class Particle
 		newz = rotate3(x - ox, y - oy, z - oz, ax, ay, az)[2] + oz;
 	}
 	void expand(){
-		x += speed * Math.cos(angx);
-		y += speed * 2;
-		z += speed * Math.sin(angx);
+		x += speed * Math.sin(angx) * Math.cos(angy);
+		y += speed * Math.sin(angx) * Math.sin(angy);
+		z += speed * Math.cos(angx);
 	}
 }
 
