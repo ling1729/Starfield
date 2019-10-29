@@ -11,7 +11,15 @@
 		<header>
 			<h1>Starfield</h1>
 		</header>
-		<button>Sphere</button>
+		<script>
+		function hideAll(){
+			var displays = document.getElementsByTagName("CANVAS") //divsToHide is an array
+	    	for(var i = 0; i < displays; i++){
+	    		displays.remove();
+	   		}
+   		}
+		</script>
+		<button onclick = "hideAll()">Sphere</button>
 		<button>Cone</button>
 		<button>Cube</button>
 		<button>Cylinder</button>
