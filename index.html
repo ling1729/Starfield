@@ -13,24 +13,26 @@
 		</header>
 		<script>
 		function hideAll(){
-			var displays = document.getElementsByTagName("CANVAS") //divsToHide is an array
+			var displays = document.getElementsByTagName("CANVAS")
 	    	for(var i = 0; i < displays; i++){
-	    		displays.remove();
+	    		displays[i].remove();
 	   		}
    		}
 		</script>
-		<button onclick = "hideAll()">Sphere</button>
-		<button>Cone</button>
-		<button>Cube</button>
-		<button>Cylinder</button>
+		<button onclick = "function() {
+			hideAll();
+		}">Sphere</button>
+		<button onclick = "hideAll()" >Cone</button>
+		<button onclick = "hideAll()">Cube</button>
+		<button onclick = "hideAll()">Cylinder</button>
 			<section id="content">
 				<canvas id="sphere" data-processing-sources="sphere/sphere.pde">
 				</canvas>
 				<canvas id="cone" data-processing-sources="cone/cone.pde">
 				</canvas>
-				<canvas id="cube" data-processing-sources="cone/cone.pde">
+				<canvas id="cube" data-processing-sources="cube/cube.pde">
 				</canvas>
-				<canvas id="cylinder" data-processing-sources="cone/cone.pde">
+				<canvas id="cylinder" data-processing-sources="cylinder/cylinder.pde">
 				</canvas>
 		    </section>
 	    <footer>
