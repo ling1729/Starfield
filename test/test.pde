@@ -60,8 +60,8 @@ class Particle
 	}
 	void expand(){
 		x += speed * Math.cos(angx);
-		y += speed * 2;
 		z += speed * Math.sin(angx);
+		y += speed;
 	}
 }
 
