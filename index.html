@@ -5,16 +5,10 @@
 		<title>Shapes</title>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="styles.css">
-		<script src="processing.js"></script>
-	</head>
-	<body>
-		<header>
-			<h1>Starfield</h1>
-		</header>
 		<script>
 		function hideAll(){
 			var displays = document.getElementsByTagName("CANVAS");
-	    	for(var i = 0; i < displays.length(); i++){
+	    	for(var i = 0; i < displays.length; i++){
 	    		displays[0].remove();
 	    		i--;
 	   		}
@@ -22,21 +16,30 @@
    		function showSphere(){
    			hideAll();
 			var canv = document.createElement("CANVAS");
+			canv.setAttribute("type", "text/processing");
 			canv.setAttribute("data-processing-sources", "cone/cone.pde");
 			document.getElementById("content").appendChild(canv);
    		}
    		function showCone(){
    			hideAll();
 			var canv = document.createElement("CANVAS");
+			canv.setAttribute("type", "text/processing");
 			canv.setAttribute("data-processing-sources", "cone/cone.pde");
 			document.getElementById("content").appendChild(canv);
    		}
 		</script>
+		<script src="processing.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Starfield</h1>
+		</header>
+		
 		<button onclick = "showCone()";>Sphere</button>
 		<button onclick = "hideAll()" >Cone</button>
 		<button onclick = "hideAll()">Cube</button>
 		<button onclick = "hideAll()">Cylinder</button>
-		
+
 			<section id="content">
 				<canvas id="sphere" data-processing-sources="sphere/sphere.pde">
 				</canvas>
