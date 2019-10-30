@@ -13,14 +13,19 @@
 		</header>
 		<script>
 		function hideAll(){
-			var displays = document.getElementsByTagName("CANVAS")
+			var displays = document.getElementsByTagName("CANVAS");
 	    	for(var i = 0; i < displays; i++){
 	    		displays[i].remove();
 	   		}
    		}
+   		function showCone(){
+   			hideAll();
+			var canv = document.createElement("CANVAS");
+			canv.setAttribute("data-processing-sources", "cone/cone.pde");
+   		}
 		</script>
 		<button onclick = "function() {
-			hideAll();
+			showCone();
 		}">Sphere</button>
 		<button onclick = "hideAll()" >Cone</button>
 		<button onclick = "hideAll()">Cube</button>
