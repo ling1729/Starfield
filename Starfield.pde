@@ -13,6 +13,7 @@ void setup()
 	size(500, 500);
 	for(int i = 0; i < dots.length; i++)
 		dots[i] = new Particle(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
+	dots[0] = new Oddball(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
 
 }
 double a = 0;
@@ -20,7 +21,9 @@ double a = 0;
 void mouseClicked() {
   a = 0;
   for(int i = 0; i < dots.length; i++)
-		dots[i] = new Particle(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
+	dots[i] = new Particle(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
+  dots[0] = new Oddball(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
+
 }
 int mode = 0;
 void keyPressed() {
@@ -28,7 +31,8 @@ void keyPressed() {
   	a = 0;
   	for(int i = 0; i < dots.length; i++)
 		dots[i] = new Particle(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
-  	mode += mode == 3 ? - 3 : 1;
+  	dots[0] = new Oddball(centerx, centery, centerz, color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)), 2 * PI * Math.random() - PI, 2 * PI * Math.random() - PI, Math.random()*speed);
+  	mode += mode == 4 ? - 4 : 1;
   }
 }
 void draw()
@@ -54,6 +58,9 @@ class Particle
 	double angz = 0;
 	double speed = 0;
 	color c;
+	Particle(){
+
+	}
 	Particle(double x, double y, double z, color c, double ax, double ay, double speed){
 		this.x = x;
 		this.y = y;
@@ -96,14 +103,79 @@ class Particle
 				x += speed/4 * Math.cos(angx);
 				z += speed/4 * Math.sin(angx);
 				break;
+			case 4:
+				x += speed;
+				y += speed;
+				z += speed;
+				break;
+		
 		
 		}
 	}
 }
 
-class OddballParticle //inherits from Particle
+class Oddball extends Particle
 {
-	//your code here
+	Oddball(double x, double y, double z, color c, double ax, double ay, double speed){
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.c = c;
+		this.angx = ax;
+		this.angy = ay;
+		this.speed = speed/2;
+	}
+	void expand(int mode){
+		switch (mode) {
+			case 0:
+				x += speed * Math.sin(angx) * Math.cos(angy);
+				y += speed * Math.sin(angx) * Math.sin(angy);
+				z += speed * Math.cos(angx);
+				x += Math.random()*4-2;
+				y += Math.random()*4-2;
+				z += Math.random()*4-2;
+				break;
+
+			case 1:
+				x += speed * Math.sin(angx) * Math.cos(angy);
+				y += speed * Math.sin(angx) * Math.sin(angy);
+				z += speed * Math.sin(angx);
+				x += Math.random()*4-2;
+				y += Math.random()*4-2;
+				z += Math.random()*4-2;
+				break;
+			case 2:
+				x += speed/4 * Math.cos(angx);
+				z += speed/4 * Math.sin(angx);
+				y += angy;
+				x += Math.random()*4-2;
+				y += Math.random()*4-2;
+				z += Math.random()*4-2;
+				break;
+			case 3:
+				x += speed/4 * Math.cos(angx);
+				z += speed/4 * Math.sin(angx);
+				x += Math.random()*2-1;
+				y += Math.random()*2-1;
+				z += Math.random()*2-1;
+				break;
+			case 4:
+				x += speed;
+				y += speed;
+				z += speed;
+				x += Math.random()*2-1;
+				y += Math.random()*2-1;
+				z += Math.random()*2-1;
+				break;
+		
+		
+		}
+	}
+	void show(){
+		noStroke();
+		fill(c);
+		rect((float)newx, (float)newy, (float)(3+newz/100 > 0? 3+newz/100 : 0 )*5, (float)(3+newz/100 > 0? 3+newz/100 : 0 )*5);
+	}
 }
 
 
